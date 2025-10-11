@@ -1,45 +1,44 @@
+#Função de Confirmar se é Triângulo
 def confi_triangulos(a, b, c):
     if a + b > c and c + a > b and b + c > a:
-        triangulo_confirmacao = 'positivo'
+        return 'positivo'
     else:
-        triangulo_confirmacao = 'negativo'
-        return triangulo_confirmacao
+        return 'negativo'
+#Função para ver qual é o tipo do Triângulo    
 def qual_triangulo(triangulo_confirmacao, a, b, c):
     if triangulo_confirmacao == 'positivo':
-        if a == b or b == c or a == c:
-            tipo_triangulo = 'isosceles'
-        elif a == b and b == c:
+        if a == b and b == c:
             tipo_triangulo = 'equilatero'
+        elif a == b or b == c or a == c:
+            tipo_triangulo = 'isosceles'
         else:
             tipo_triangulo = 'escaleno'
-            return tipo_triangulo
-def retangulo(a, b):
-    teorema = (a**2 + b**2)**0.5 
-    if teorema**2 == (a**2 + b**2):
-        retangulo_confirmacao = 'positivo'
     else:
-        retangulo_confirmacao = 'negativo'
-        return retangulo_confirmacao
+        tipo_triangulo = None
+    return tipo_triangulo
+#Triângulo é Retângulo ou não?
+def retangulo(a, b, c):
+    if c**2 == a**2 + b**2:
+        return 'positivo'
+    else:
+        return 'negativo'
 
-# programa
+#Entrada de Dados
+a = int(input('Digite o valor do primeiro cateto: '))
+b = int(input('Digite o valor do segundo cateto: '))
+c = int(input('Digite o valor da hipotenusa: '))
 
-#catetos e hipotenusa
-c = int(input('Digite a hipotenusa: '))
-b = int(input('Digite o primeiro cateto: '))
-a = int(input('Digite o segundo cateto: '))
-#variaveis funções
+#Variaveis Recebem Funções
 triangulo_confirmacao = confi_triangulos(a, b, c)
 tipo_triangulo = qual_triangulo(triangulo_confirmacao, a, b, c)
-retangulo_confirmacao = retangulo(a, b)
-#execução final
+retangulo_confirmacao = retangulo(a, b, c)
+
+#Execução Final
 if triangulo_confirmacao == 'positivo':
-    print(f'O seu triangulo é um triangulo {tipo_triangulo}')
-if retangulo_confirmacao == 'positivo':
-    print('Esse triângulo é retângulo!')
-else:
-    if retangulo_confirmacao == 'negativo':
-        print('Não é retângulo')
+    print(f'O seu triângulo é um triângulo {tipo_triangulo}!')
+    if retangulo_confirmacao == 'positivo':
+        print('Esse triângulo é retângulo!')
     else:
-       if triangulo_confirmacao == 'negativo':
-          print('Não é possível de se formar um triângulo...')
-            
+        print('Não é um triângulo retângulo...')
+else:
+    print('Não é possível formar um triângulo...')
